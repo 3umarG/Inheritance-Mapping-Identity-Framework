@@ -6,6 +6,6 @@
 
         public string Name { get; set; }    
 
-        public virtual ICollection<Teacher> Teachers { get; set; } = new HashSet<Teacher>();
+        public virtual ICollection<Teacher>? Teachers { get; set; } = new HashSet<Teacher>();
     }
 }
