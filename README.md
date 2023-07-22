@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a .NET API 6 application that demonstrates two different mapping strategies for handling inheritance relationships: TPH (Table Per Hierarchy) and TPT (Table Per Type). The aim of this project is to compare these two strategies in terms of storage efficiency, performance, and maintainability.
+This repository contains a .NET API 6 application that demonstrates two different mapping strategies for handling inheritance relationships: TPH (Table Per Hierarchy) and TPT (Table Per Type) with IdentityFramework for User Management . The aim of this project is to compare these two strategies in terms of storage efficiency, performance, and maintainability.
 
 ## Table of Contents
 
