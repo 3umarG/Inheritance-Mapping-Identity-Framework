@@ -1,0 +1,73 @@
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
+using TPH.Models;
+
+namespace TPH.Data
+{
+	public class ApplicationDbContext : IdentityDbContext<User>
+	{
+		public ApplicationDbContext()
+		{
+
+		}
+
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+		{
+
+		}
+
+		protected override void OnModelCreating(ModelBuilder builder)
+		{
+			base.OnModelCreating(builder);
+
+			//builder.Entity<User>().ToTable("Users");
+			builder.Entity<IdentityRole>().ToTable("Roles");
+			builder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
+			builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
+			builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
+			builder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
+			builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
+
+			builder.Entity<User>()
+				.OwnsMany(
+				u => u.RefreshTokens,
+				t =>
+				{
+					t.WithOwner().HasForeignKey("UserId");
+					t.Property<int>("Id");
+					t.HasKey("Id");
+				});
+
+			builder.Entity<Student>()
+				.HasMany(s => s.Subjects)
+				.WithOne(sub => sub.Student)
+				.HasForeignKey(sb => sb.StudentId);
+
+			builder.Entity<Subject>()
+				.HasMany(sub => sub.Students)
+				.WithOne(s => s.Subject)
+				.HasForeignKey(s => s.SubjectId);
+
+			builder.Entity<Teacher>()
+				.HasMany(t => t.Subjects)
+				.WithOne(s => s.Teacher)
+				.HasForeignKey(s => s.TeacherId);
+
+			builder.Entity<Room>()
+				.HasMany(r => r.Teachers)
+				.WithOne(t => t.Room)
+				.HasForeignKey(t => t.RoomId);
+
+			builder.Entity<StudentWithSubject>()
+				.HasKey(sb => new { sb.StudentId, sb.SubjectId });
+		}
+
+		public virtual DbSet<User> Users { get; set; }
+		public virtual DbSet<Student> Students { get; set; }
+		public virtual DbSet<Teacher> Teachers { get; set; }
+		public virtual DbSet<Manager> Managers { get; set; }
+		public virtual DbSet<StudentWithSubject> StudentsWithSubjects { get; set; }
+	}
+}
