@@ -1,6 +1,6 @@
 ﻿namespace TPH.DTOs
 {
-    public class StudentRegisterDto : StudentLoginDto
+    public class StudentRegisterDto : LoginDto
     {
        
 

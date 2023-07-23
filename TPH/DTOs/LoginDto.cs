@@ -1,6 +1,6 @@
 ﻿namespace TPH.DTOs
 {
-	public class StudentLoginDto
+	public class LoginDto
 	{
         public string UserName { get; set; }
 
