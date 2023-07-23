@@ -7,6 +7,10 @@ namespace TPH.Interfaces
 	{
 		public Task<AuthModel> RegisterStudent(StudentRegisterDto dto);
 
-		public Task<AuthModel> LoginStudentAsync(StudentLoginDto dto);
+		public Task<AuthModel> LoginAsync(LoginDto dto); 
+		
+		public Task<AuthModel> RegisterTeacherAsync(TeacherRegisterDto dto);
+
+		
 	}
 }

@@ -35,7 +35,7 @@ namespace TPH.Services
 			_roleManager = roleManager;
 		}
 
-		public async Task<AuthModel> LoginStudentAsync(StudentLoginDto dto)
+		public async Task<AuthModel> LoginAsync(LoginDto dto)
 		{
 			var auth = new AuthModel();
 
@@ -154,5 +154,35 @@ namespace TPH.Services
 
 			return auth;
 		}
+
+		public async Task<AuthModel> RegisterTeacherAsync(TeacherRegisterDto dto)
+		{
+			var auth = new AuthModel();
+
+			var existedUser = await _userManager.FindByNameAsync(dto.UserName);
+			if (existedUser is not null)
+			{
+				auth.Message = "There is already Teacher with the same user name";
+				return auth;
+			}
+
+			var user = _mapper.Map<Teacher>(dto);
+			user.Email = dto.UserName;
+			var result = await _userManager.CreateAsync(user, dto.Password);
+
+			if (!result.Succeeded)
+			{
+				auth.Message = "Error occured while register !!";
+				return auth;
+			}
+
+			auth.IsAuthed = true;
+			auth.Email = user.Email;
+			auth.UserName = user.UserName;
+
+			return auth;
+
+		}
+
 	}
 }
