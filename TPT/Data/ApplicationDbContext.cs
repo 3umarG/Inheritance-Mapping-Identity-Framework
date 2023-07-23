@@ -41,12 +41,14 @@ namespace TPT.Data
 
 			builder.Entity<User>()
 				.OwnsMany(
+				"RefreshTokens",
 				u => u.RefreshTokens,
 				t =>
 				{
 					t.WithOwner().HasForeignKey("UserId");
 					t.Property<int>("Id");
 					t.HasKey("Id");
+					t.ToTable("RefreshTokens");
 				});
 
 			builder.Entity<Student>()
