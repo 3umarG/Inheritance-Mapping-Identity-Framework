@@ -10,6 +10,9 @@ namespace TPH.Services
         {
             CreateMap<Student, StudentRegisterDto>()
                 .ReverseMap();
+
+            CreateMap<Teacher, TeacherRegisterDto>()
+                .ReverseMap();
         }
     }
 }
