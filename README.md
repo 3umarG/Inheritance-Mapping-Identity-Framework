@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a .NET API 6 application that demonstrates two different mapping strategies for handling inheritance relationships: TPH (Table Per Hierarchy) and TPT (Table Per Type). The aim of this project is to compare these two strategies in terms of storage efficiency, performance, and maintainability.
+This repository contains a .NET API 6 application that demonstrates two different mapping strategies for handling inheritance relationships: TPH (Table Per Hierarchy) and TPT (Table Per Type) with IdentityFramework for User Management . The aim of this project is to compare these two strategies in terms of storage efficiency, performance, and maintainability.
 
 ## Table of Contents
 
@@ -12,6 +12,7 @@ This repository contains a .NET API 6 application that demonstrates two differen
 - [Comparison](#comparison)
 - [Performance Analysis](#performance-analysis)
 - [ERDs](#erds)
+- [UML for Users](#uml-for-users)
 - [References](#references)
 
 ## Introduction
@@ -60,6 +61,11 @@ Let's compare the TPH and TPT strategies based on three key criteria:
 
 - **TPH** : The single-table approach makes schema updates straightforward. However, as the number of subclasses increases, the table can become cluttered, making maintenance challenging.
 - **TPT** : The separated-table approach makes schema updates easier for individual subclasses. However, maintaining a large number of tables can be cumbersome.
+
+
+### UML for Users
+![UML for Users Management](https://github.com/OmarGomaaFCi/MappingStrategies/assets/90159439/eb8f4e00-924e-4f03-9a92-f8c3771bd278)
+
 
 ### ERDs 
 ### TPH : Table Per Hierarchy
