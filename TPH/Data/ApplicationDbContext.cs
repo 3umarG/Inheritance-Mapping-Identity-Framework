@@ -32,13 +32,19 @@ namespace TPH.Data
 
 			builder.Entity<User>()
 				.OwnsMany(
+				"RefreshTokens",
 				u => u.RefreshTokens,
 				t =>
 				{
 					t.WithOwner().HasForeignKey("UserId");
 					t.Property<int>("Id");
 					t.HasKey("Id");
-				});
+					t.ToTable("RefreshTokens");
+				})
+				.HasDiscriminator<string>("User_Role")
+				.HasValue<Student>("Student")
+				.HasValue<Teacher>("Teacher")
+				.HasValue<Manager>("Manager");
 
 			builder.Entity<Student>()
 				.HasMany(s => s.Subjects)
