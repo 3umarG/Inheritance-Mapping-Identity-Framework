@@ -6,5 +6,7 @@ namespace TPH.Interfaces
 	public interface IAuthService
 	{
 		public Task<AuthModel> RegisterStudent(StudentRegisterDto dto);
+
+		public Task<AuthModel> LoginStudentAsync(StudentLoginDto dto);
 	}
 }
